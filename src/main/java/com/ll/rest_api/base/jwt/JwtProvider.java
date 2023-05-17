@@ -41,7 +41,7 @@ public class JwtProvider {
                 .compact();
     }
 
-    public boolean verity(String token) {
+    public boolean verify(String token) {
         try {
             Jwts.parserBuilder()
                     .setSigningKey(getSecretKey())

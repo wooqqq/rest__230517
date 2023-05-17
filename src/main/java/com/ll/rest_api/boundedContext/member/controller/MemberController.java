@@ -1,6 +1,5 @@
 package com.ll.rest_api.boundedContext.member.controller;
 
-import com.ll.rest_api.boundedContext.member.entity.Member;
 import com.ll.rest_api.boundedContext.member.service.MemberService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -34,6 +33,14 @@ public class MemberController {
 
         resp.addHeader("Authentication", accessToken);
 
-        return "응답본문";
+        return """
+                {
+                "resultCode": "S-1",
+                "msg": "엑세스 토큰이 생성되었습니다.",
+                "data": {
+                    "accessToken": "%s"
+                 }
+                }
+                """.formatted(accessToken).stripIndent();
     }
 }
