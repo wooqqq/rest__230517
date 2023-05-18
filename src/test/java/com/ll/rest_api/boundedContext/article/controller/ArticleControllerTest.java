@@ -26,18 +26,36 @@ class ArticleControllerTest {
     @Test
     @DisplayName("GET /articles")
     void t1() throws Exception {
-        // When
+        // WHEN
         ResultActions resultActions = mvc
                 .perform(
                         get("/api/v1/articles")
                 )
                 .andDo(print());
 
-        // Then
+        // THEN
         resultActions
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$.resultCode").value("S-1"))
                 .andExpect(jsonPath("$.msg").exists())
                 .andExpect(jsonPath("$.data.articles[0].id").exists());
+    }
+
+    @Test
+    @DisplayName("GET /articles/1")
+    void t2() throws Exception {
+        // WHEN
+        ResultActions resultActions = mvc
+                .perform(
+                        get("/api/v1/articles/1")
+                )
+                .andDo(print());
+
+        // THEN
+        resultActions
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("$.resultCode").value("S-1"))
+                .andExpect(jsonPath("$.msg").exists())
+                .andExpect(jsonPath("$.data.article.id").value(1));
     }
 }
