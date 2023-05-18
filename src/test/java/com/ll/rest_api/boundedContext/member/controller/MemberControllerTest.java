@@ -32,7 +32,7 @@ class MemberControllerTest {
         // WHEN
         ResultActions resultActions = mvc
                 .perform(
-                        post("/member/login")
+                        post("/api/v1/member/login")
                                 .content("""
                                         {
                                             "username": "user1",
